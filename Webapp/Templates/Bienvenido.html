@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Bienvenido</title>
+</head>
+<body>
+<h1> Bienvenido al Sistema de Administracion de Personas </h1>
+
+
+  <a href="{% url 'nuevo' %}">Agregar Nueva Persona</a>
+
+
+
+<div> Numero de personas en BD: {{no_personas}} </div>
+<div>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Detalle</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+        </thead>
+
+        <tbody>
+            {%for persona in Personas%}
+            <tr>
+                <td>{{persona.id}}</td>
+                <td>{{persona.nombre}} {{persona.apellido}}</td>
+                <td>{{persona.email}}</td>
+                <td><a href="/detalle_persona/{{persona.id}}"> Ver Detalle</a></td>
+                <td><a href="{% url 'editar' id=persona.id %}"> Editar Información</a></td>
+                <td> <a href="{% url 'borrar' id=persona.id %}">Eliminar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+
+</body>
+</html>
